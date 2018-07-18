@@ -5,6 +5,7 @@ import com.martinetherton.mysite.models.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,10 +21,11 @@ public class UserController {
      */
     @RequestMapping("/create")
     @ResponseBody
-    public String create(String email, String name) {
+//    public String create(String email, String name) {
+    public String create(@RequestBody User user) {
         String userId = "";
         try {
-            User user = new User(email, name);
+  //          User user = new User(email, name);
             userDao.save(user);
             userId = String.valueOf(user.getId());
         }
